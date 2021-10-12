@@ -42,18 +42,18 @@ public:
     Q_ENUM(RequestType)
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     Q_INVOKABLE bool enabled() const;
+    Q_INVOKABLE QString apiURL() const;
+    Q_INVOKABLE QString accessKey() const;
+    Q_INVOKABLE bool isStrictTransportSecurityEnabled() const;
+    Q_INVOKABLE bool isCertificateVerificationEnabled() const;
+    Q_INVOKABLE int transferTimeout() const;
 
 public slots:
     void setAPIURL(const QString& url);
-    QString apiURL() const;
     void setAccessKey(const QString& key);
-    QString accessKey() const;
     void setStrictTransportSecurityEnabled(bool enabled);
-    bool isStrictTransportSecurityEnabled() const;
     void setCertificateVerificationEnabled(bool enabled);
-    bool isCertificateVerificationEnabled() const;
     void setTransferTimeout(int timeout);
-    int transferTimeout() const;
     void setEnabled(bool enabled);
     std::uint64_t requestLastFilesForURLs(const QVector<int>& urlIDs);
     std::uint64_t requestLastFilesForSubscriptions(const QVector<int>& subscriptionIDs);

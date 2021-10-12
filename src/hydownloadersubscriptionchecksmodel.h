@@ -35,11 +35,11 @@ public:
     std::uint64_t addOrUpdateObjects(const QJsonArray& objs) override;
     void refresh(bool full = true) override;
     void clear() override;
+    Q_INVOKABLE QString statusText() const;
+    Q_INVOKABLE bool showArchived() const;
 
 public slots:
     void loadDataForSubscriptions(const QVector<int>& subscriptionIDs = {});
-    QString statusText() const;
-    bool showArchived() const;
     void setShowArchived(bool show);
 
 signals:
