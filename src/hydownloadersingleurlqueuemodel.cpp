@@ -16,8 +16,8 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "hydownloadersingleurlqueuemodel.h"
-#include "hydownloaderconnection.h"
+#include <hydownloader-cpp/hydownloadersingleurlqueuemodel.h>
+#include <hydownloader-cpp/hydownloaderconnection.h>
 #include <QJsonObject>
 
 HyDownloaderSingleURLQueueModel::HyDownloaderSingleURLQueueModel() :

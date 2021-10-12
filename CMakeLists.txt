@@ -18,20 +18,22 @@ else()
 endif()
 
 add_library(hydownloader-cpp
-    src/hydownloaderconnection.h
+    include/hydownloader-cpp/hydownloaderconnection.h
     src/hydownloaderconnection.cpp
-    src/hydownloaderlogmodel.h
+    include/hydownloader-cpp/hydownloaderlogmodel.h
     src/hydownloaderlogmodel.cpp
-    src/hydownloadersingleurlqueuemodel.h
+    include/hydownloader-cpp/hydownloadersingleurlqueuemodel.h
     src/hydownloadersingleurlqueuemodel.cpp
-    src/hydownloadersubscriptionmodel.h
+    include/hydownloader-cpp/hydownloadersubscriptionmodel.h
     src/hydownloadersubscriptionmodel.cpp
-    src/hydownloaderjsonobjectlistmodel.h
+    include/hydownloader-cpp/hydownloaderjsonobjectlistmodel.h
     src/hydownloaderjsonobjectlistmodel.cpp
     src/hydownloadersubscriptionchecksmodel.cpp
-    src/hydownloadersubscriptionchecksmodel.h)
+    include/hydownloader-cpp/hydownloadersubscriptionchecksmodel.h)
 
 add_library(hydownloader-cpp::hydownloader-cpp ALIAS hydownloader-cpp)
+
+target_include_directories(hydownloader-cpp PUBLIC include)
 
 if(USE_QT5)
     target_link_libraries(hydownloader-cpp PRIVATE Qt5::Core Qt5::Network Qt5::Gui)

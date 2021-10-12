@@ -16,8 +16,8 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "hydownloadersubscriptionmodel.h"
-#include "hydownloaderconnection.h"
+#include <hydownloader-cpp/hydownloadersubscriptionmodel.h>
+#include <hydownloader-cpp/hydownloaderconnection.h>
 
 HyDownloaderSubscriptionModel::HyDownloaderSubscriptionModel() :
     HyDownloaderJSONObjectListModel{
