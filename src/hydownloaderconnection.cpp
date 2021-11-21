@@ -153,6 +153,19 @@ uint64_t HyDownloaderConnection::requestSubscriptionChecksData(const QVector<int
     return reply->property("requestID").toULongLong();
 }
 
+uint64_t HyDownloaderConnection::requestMissedSubscriptionChecksData(const QVector<int>& subscriptionIDs, bool showArchived)
+{
+    if(!m_enabled) return 0;
+    QJsonObject obj;
+    QJsonArray array;
+    for(const auto id: subscriptionIDs) array.push_back(id);
+    obj["ids"] = array;
+    obj["archived"] = showArchived;
+    auto reply = post("/get_missed_subscription_checks", QJsonDocument{obj});
+    reply->setProperty("requestType", QVariant::fromValue(RequestType::MissedSubscriptionChecksData));
+    return reply->property("requestID").toULongLong();
+}
+
 uint64_t HyDownloaderConnection::requestSingleURLQueueData(bool showArchived)
 {
     if(!m_enabled) return 0;
@@ -206,6 +219,12 @@ uint64_t HyDownloaderConnection::addOrUpdateSubscriptionChecks(const QJsonArray&
 {
     if(!m_enabled) return 0;
     return post("/add_or_update_subscription_checks", QJsonDocument{data})->property("requestID").toULongLong();
+}
+
+uint64_t HyDownloaderConnection::addOrUpdateMissedSubscriptionChecks(const QJsonArray& data)
+{
+    if(!m_enabled) return 0;
+    return post("/add_or_update_missed_subscription_checks", QJsonDocument{data})->property("requestID").toULongLong();
 }
 
 uint64_t HyDownloaderConnection::pauseSubscriptions()
@@ -324,6 +343,8 @@ void HyDownloaderConnection::handleNetworkReplyFinished(QNetworkReply* reply)
                     break;
                 case RequestType::SubscriptionChecksData:
                     emit subscriptionChecksDataReceived(reqID, QJsonDocument::fromJson(reply->readAll()).array());
+                case RequestType::MissedSubscriptionChecksData:
+                    emit missedSubscriptionChecksDataReceived(reqID, QJsonDocument::fromJson(reply->readAll()).array());
             }
         } else {
             emit replyReceived(reqID, QJsonDocument::fromJson(reply->readAll()));

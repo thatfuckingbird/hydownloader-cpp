@@ -36,6 +36,7 @@ public:
         StatusInformation,
         SubscriptionData,
         SubscriptionChecksData,
+        MissedSubscriptionChecksData,
         SingleURLQueueData,
         APIVersion
     };
@@ -61,6 +62,7 @@ public slots:
     std::uint64_t requestStatusInformation();
     std::uint64_t requestSubscriptionData();
     std::uint64_t requestSubscriptionChecksData(const QVector<int>& subscriptionIDs = {}, bool showArchived = false);
+    std::uint64_t requestMissedSubscriptionChecksData(const QVector<int>& subscriptionIDs = {}, bool showArchived = false);
     std::uint64_t requestSingleURLQueueData(bool showArchived = false);
     std::uint64_t requestAPIVersion();
     std::uint64_t deleteURLs(const QVector<int>& ids);
@@ -68,6 +70,7 @@ public slots:
     std::uint64_t addOrUpdateURLs(const QJsonArray& data);
     std::uint64_t addOrUpdateSubscriptions(const QJsonArray& data);
     std::uint64_t addOrUpdateSubscriptionChecks(const QJsonArray& data);
+    std::uint64_t addOrUpdateMissedSubscriptionChecks(const QJsonArray& data);
     std::uint64_t pauseSubscriptions();
     std::uint64_t resumeSubscriptions();
     std::uint64_t pauseSingleURLQueue();
@@ -87,6 +90,7 @@ signals:
     void subscriptionDataReceived(std::uint64_t requestID, const QJsonArray& data);
     void singleURLQueueDataReceived(std::uint64_t requestID, const QJsonArray& data);
     void subscriptionChecksDataReceived(std::uint64_t requestID, const QJsonArray& data);
+    void missedSubscriptionChecksDataReceived(std::uint64_t requestID, const QJsonArray& data);
     void apiVersionReceived(std::uint64_t requestID, int version);
     void replyReceived(std::uint64_t requestID, const QJsonDocument& data);
     void enabledChanged(bool);

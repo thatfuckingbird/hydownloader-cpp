@@ -29,7 +29,9 @@ add_library(hydownloader-cpp
     include/hydownloader-cpp/hydownloaderjsonobjectlistmodel.h
     src/hydownloaderjsonobjectlistmodel.cpp
     src/hydownloadersubscriptionchecksmodel.cpp
-    include/hydownloader-cpp/hydownloadersubscriptionchecksmodel.h)
+    include/hydownloader-cpp/hydownloadersubscriptionchecksmodel.h
+    src/hydownloadermissedsubscriptionchecksmodel.cpp
+    include/hydownloader-cpp/hydownloadermissedsubscriptionchecksmodel.h)
 
 add_library(hydownloader-cpp::hydownloader-cpp ALIAS hydownloader-cpp)
 
