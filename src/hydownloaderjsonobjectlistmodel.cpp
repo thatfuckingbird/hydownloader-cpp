@@ -40,10 +40,13 @@ QVector<int> HyDownloaderJSONObjectListModel::getIDs(const QModelIndexList& indi
     return res;
 }
 
-void HyDownloaderJSONObjectListModel::clear()
+void HyDownloaderJSONObjectListModel::clear(bool full)
 {
     beginResetModel();
     m_data = {};
+    if(full) {
+        m_updateIDs.clear();
+    }
     endResetModel();
 }
 

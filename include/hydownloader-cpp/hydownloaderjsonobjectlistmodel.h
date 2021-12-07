@@ -37,7 +37,7 @@ public:
     virtual void refresh(bool full = true) = 0;
     virtual std::uint64_t addOrUpdateObjects(const QJsonArray& objs) = 0;
     QVector<int> getIDs(const QModelIndexList& indices) const;
-    virtual void clear();
+    virtual void clear(bool full = false);
     int columnCount(const QModelIndex& parent) const override;
     int rowCount(const QModelIndex& parent) const override;
     QVariant data(const QModelIndex& index, int role) const override;

@@ -54,9 +54,12 @@ void HyDownloaderSubscriptionChecksModel::refresh(bool full)
     }
 }
 
-void HyDownloaderSubscriptionChecksModel::clear()
+void HyDownloaderSubscriptionChecksModel::clear(bool full)
 {
-    HyDownloaderJSONObjectListModel::clear();
+    HyDownloaderJSONObjectListModel::clear(full);
+    if(full) {
+        m_lastRequestedIDs.reset();
+    }
     m_statusText = "No data loaded";
     emit statusTextChanged(m_statusText);
 }
@@ -87,6 +90,9 @@ void HyDownloaderSubscriptionChecksModel::setShowArchived(bool show)
 
 void HyDownloaderSubscriptionChecksModel::handleSubscriptionChecksData(uint64_t, const QJsonArray& data)
 {
+    if(!m_lastRequestedIDs) {
+        return;
+    }
     if(const auto& ids = m_lastRequestedIDs.value(); !ids.isEmpty()) {
         const auto size = ids.size();
         if(size == 1) {
