@@ -95,6 +95,15 @@ void HyDownloaderConnection::setEnabled(bool enabled)
     }
 }
 
+uint64_t HyDownloaderConnection::requestURLForSubscriptionData(const QString &downloader, const QString &keywords)
+{
+    if(!m_enabled) return 0;
+    QJsonObject obj;
+    obj["downloader"] = downloader;
+    obj["keywords"] = keywords;
+    return post("/subscription_data_to_url", QJsonDocument{obj})->property("requestID").toULongLong();
+}
+
 uint64_t HyDownloaderConnection::requestLastFilesForURLs(const QVector<int>& urlIDs)
 {
     if(!m_enabled) return 0;

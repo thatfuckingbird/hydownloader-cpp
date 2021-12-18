@@ -56,6 +56,7 @@ public slots:
     void setCertificateVerificationEnabled(bool enabled);
     void setTransferTimeout(int timeout);
     void setEnabled(bool enabled);
+    std::uint64_t requestURLForSubscriptionData(const QString& downloader, const QString& keywords);
     std::uint64_t requestLastFilesForURLs(const QVector<int>& urlIDs);
     std::uint64_t requestLastFilesForSubscriptions(const QVector<int>& subscriptionIDs);
     std::uint64_t requestStaticData(QString filePath);
